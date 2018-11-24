@@ -1550,6 +1550,43 @@ label greeting_hairdown:
 
     return
 
+init 5 python:
+    rules = dict()
+    rules.update(MASGreetingRule.create_rule(skip_visual=True, random_chance=5))
+    addEvent(
+        Event(
+            persistent.greeting_database,
+            eventlabel="greeting_ghost",
+            unlocked=True,
+            random=True,
+            rules=rules
+        ),
+        eventdb=evhand.greeting_database
+    )
+    del rules
+
+label greeting_ghost:
+    call mas_ghost_monika
+    return
+
+init 5 python:
+    rules = dict()
+    rules.update(MASGreetingRule.create_rule(skip_visual=True, random_chance=5))
+    addEvent(
+        Event(
+            persistent.greeting_database,
+            eventlabel="greeting_ghost_blood",
+            unlocked=True,
+            random=True,
+            rules=rules
+        ),
+        eventdb=evhand.greeting_database
+    )
+    del rules
+
+label greeting_ghost_blood:
+    call mas_ghost_monika_blood
+    return 
 
 
 init 5 python:

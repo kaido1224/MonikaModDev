@@ -231,3 +231,29 @@ label natsuki_name_scare_hungry:
 
     #go back to dialog
     return
+
+transform zoom_ghost: 
+        zoom 1.5 yoffset 500
+
+
+label mas_ghost_monika:
+    python:
+        play_song(audio.ghostmenu)
+    show ghost_monika zorder MAS_MONIKA_Z at i11
+    pause(10)
+    stop music
+    show ghost_monika at zoom_ghost
+    pause 0.01
+    $ persistent.closed_self = True
+    jump _quit
+
+label mas_ghost_monika_blood:
+    play sound hb loop
+    show ghost_smile zorder MAS_MONIKA_Z at i11
+    pause(5)
+    stop sound
+    hide ghost_smile
+    show ghost_blood zorder MAS_MONIKA_Z at i11
+    pause 0.01
+    $ persistent.closed_self = True
+    jump _quit
